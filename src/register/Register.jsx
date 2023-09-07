@@ -22,7 +22,7 @@ export default function Register() {
             </div>
             <div>
               <form
-                action="infoDataBase.php"
+                action="http://127.0.0.1:8000/api/register"
                 className="flex flex-col gap-3"
                 name="form"
                 method="post"
@@ -37,7 +37,7 @@ export default function Register() {
                     type="text"
                     className="outline-none w-full h-full rounded-xl"
                     placeholder="Email"
-                    name="email"
+                    name="usuario"
                   />
                 </div>
                 <div className="flex border border-[#BDBDBD] h-[48px] pl-3 gap-3 rounded-xl">
@@ -50,7 +50,7 @@ export default function Register() {
                     type="password"
                     className="outline-none w-full rounded-xl"
                     placeholder="Password"
-                    name="pass"
+                    name="clave"
                   />
                 </div>
                 {/* <div className=" text-red-600">

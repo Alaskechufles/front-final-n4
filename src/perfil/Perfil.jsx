@@ -6,25 +6,16 @@ export default function Perfil() {
         <nav className="flex items-center justify-center">
           <div className="flex flex-row justify-between items-center w-screen h-16 px-7">
             <img src="./icons/devchallenges-light.svg" alt="devchallenges" />
-            <div
-              id="button"
-              className=" flex gap-3 cursor-pointer hover:cursor-pointer"
-            >
-              <div>
-                <h1>Diego</h1>
-              </div>
 
-              <img src="./icons/triangle.svg" alt="" className=" w-[15px]" />
-            </div>
+            <Dropdown inline label="Diego">
+              <div className=" m-4">
+                <a href="/perfil">My Profile</a>
+              </div>
+              <div className=" m-4">
+                <a href="/login">Logout</a>
+              </div>
+            </Dropdown>
           </div>
-          <Dropdown>
-            <div>
-              <a href="/perfil">My Profile</a>
-            </div>
-            <div>
-              <a href="/login">Logout</a>
-            </div>
-          </Dropdown>
         </nav>
         <div>
           <div className="flex flex-col justify-center items-center mt-4">
