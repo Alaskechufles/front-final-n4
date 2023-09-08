@@ -1,5 +1,17 @@
 import { Dropdown } from "flowbite-react";
+import React from "react";
+import axios from "axios";
 export default function Perfil() {
+  const [post, setPost] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(baseURL)
+    .then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  if (!post) return null;
   return (
     <div>
       <main className="flex flex-col items-center justify-center">
