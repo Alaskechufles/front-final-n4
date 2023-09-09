@@ -5,6 +5,12 @@ import Register from "./register/Register";
 import Login from "./login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Perfil from "./perfil/Perfil";
+import Dashboard from "./dashboard/Dashboard";
+import Usuarios from "./opciones/Usuarios";
+import Roles from "./opciones/Roles";
+import Parametros from "./opciones/Parametros";
+import Enlaces from "./opciones/Enlaces";
+import Bitacoras from "./opciones/Bitacoras";
 function App() {
   return (
     <>
@@ -13,6 +19,12 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/usuarios" element={<Usuarios />} />
+          <Route path="/roles" element={<Roles />} />
+          <Route path="/parametros" element={<Parametros />} />
+          <Route path="/enlaces" element={<Enlaces />} />
+          <Route path="/bitacoras" element={<Bitacoras />} />
         </Routes>
       </BrowserRouter>
     </>

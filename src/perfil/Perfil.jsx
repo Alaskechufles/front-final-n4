@@ -1,6 +1,6 @@
 import { Dropdown } from "flowbite-react";
-import React from "react";
-import axios from "axios";
+/* import React from "react";
+import axios from "axios"; */
 export default function Perfil() {
   /* const [post, setPost] = React.useState(null); */
 
@@ -19,12 +19,15 @@ export default function Perfil() {
           <div className="flex flex-row justify-between items-center w-screen h-16 px-7">
             <img src="./icons/devchallenges-light.svg" alt="devchallenges" />
 
-            <Dropdown inline label="Diego">
+            <Dropdown inline label="Admin">
               <div className=" m-4">
                 <a href="/perfil">My Profile</a>
               </div>
               <div className=" m-4">
                 <a href="/login">Logout</a>
+              </div>
+              <div className=" m-4">
+                <a href="/dashboard">Dashboard</a>
               </div>
             </Dropdown>
           </div>
