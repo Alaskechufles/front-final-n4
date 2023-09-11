@@ -1,5 +1,21 @@
 import { Dropdown } from "flowbite-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Usuarios() {
+  const [usuario, setUsuario] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/usuarios")
+      .then((response) => {
+        setUsuario(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div>
       <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
@@ -163,13 +179,13 @@ export default function Usuarios() {
           </div>
           {/*  asd */}
           <div className="bg-white p-4 w-[90%] m-5 rounded-xl shadow-lg text-[#8FA5BD] flex flex-row justify-between items-center">
-            <h3>Información de Alumnos</h3>
+            <h3>Información de Usuarios</h3>
             <button
               data-modal-target="authentication-modal1"
               data-modal-toggle="authentication-modal1"
               className=" text-white bg-[#007BFF] px-4 py-2 flex justify-center items-center rounded-lg"
             >
-              Agregar Alumno
+              Agregar nuevo Usuario
             </button>
             {/* <!-- Main modal --> */}
             <div
@@ -209,94 +225,100 @@ export default function Usuarios() {
                     </h3>
                     <form
                       className="space-y-6"
-                      action="adminAlumnosCreate.php"
+                      action="http://127.0.0.1:8000/api/usuarios/create"
                       method="post"
                     >
                       <div className=" flex flex-col gap-3">
                         <label
-                          htmlFor="dni"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >
-                          DNI
-                        </label>
-                        <input
-                          type="text"
-                          name="dni"
-                          id="dni"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          placeholder="Ingresa el DNI"
-                          required
-                        />
-                        <label
-                          htmlFor="correo"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          htmlFor="usuario"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
                         >
                           Correo Electronico
                         </label>
                         <input
                           type="email"
-                          name="correo"
-                          id="correo"
+                          name="usuario"
+                          id="usuario"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                           placeholder="Ingresa el email"
                           required
                         />
                         <label
-                          htmlFor="nombre"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          htmlFor="primer_nombre"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
                         >
-                          Nombre(s)
+                          Primer Nombre
                         </label>
                         <input
                           type="text"
-                          name="nombre"
-                          id="nombre"
+                          name="primer_nombre"
+                          id="primer_nombre"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          placeholder="Ingresa el nombre(s)"
+                          placeholder="Ingresa el primer nombre"
                           required
                         />
                         <label
-                          htmlFor="apellido"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          htmlFor="segundo_nombre"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
                         >
-                          Apellido(s)
+                          Segundo Nombre
                         </label>
                         <input
                           type="text"
-                          name="apellido"
-                          id="apellido"
+                          name="segundo_nombre"
+                          id="segundo_nombre"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          placeholder="Ingresa el apellido(s)"
+                          placeholder="Ingresa el segundo nombre"
                           required
                         />
                         <label
-                          htmlFor="direccion"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          htmlFor="primer_apellido"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
                         >
-                          Dirección
+                          Primer Apellido
                         </label>
                         <input
                           type="text"
-                          name="direccion"
-                          id="direccion"
+                          name="primer_apellido"
+                          id="primer_apellido"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          placeholder="Ingresa la dirección"
+                          placeholder="Ingresa el primer apellido"
                           required
                         />
                         <label
-                          htmlFor="nacimiento"
-                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          htmlFor="segundo_apellido"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
                         >
-                          Fecha de nacimiento
+                          Segundo Apellido
+                        </label>
+                        <input
+                          type="text"
+                          name="segundo_apellido"
+                          id="segundo_apellido"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          placeholder="Ingresa el segundo apellido"
+                          required
+                        />
+                        <label
+                          htmlFor="fecha"
+                          className="block  text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Fecha de Nacimiento
                         </label>
                         <input
                           type="date"
-                          name="nacimiento"
-                          id="nacimiento"
+                          name="fecha"
+                          id="fecha"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          placeholder="mm/dd/yyyy"
+                          placeholder="Ingresa el segundo apellido"
                           required
                         />
+                        <p>
+                          La contraseña por defecto de cada usuario sera su
+                          <b> primer apellido</b>, indicar que debe efectuar un
+                          cambio de contraseña individualmente en el apartado de{" "}
+                          <b>Editar</b> en <b>My Profile</b>.
+                        </p>
                       </div>
 
                       <div className=" flex flex-row w-full justify-end gap-5">
@@ -320,228 +342,70 @@ export default function Usuarios() {
               </div>
             </div>
           </div>
-          <td className="bg-white p-4 w-[90%] m-5 rounded-xl shadow-lg text-[#8FA5BD]">
-            <table className=" table-auto w-full">
+          <div className="bg-white  p-10 w-[80%] m-10 rounded-xl shadow-lg text-[#8FA5BD]">
+            <table className=" table-auto w-full ">
               <thead>
                 <tr className=" text-center border-b  border-[#2c7fd2]">
                   <th className=" w-1/12">#</th>
-                  <th className=" w-1/6">DNI</th>
-                  <th className=" w-1/6">Nombre</th>
                   <th className=" w-1/6">Correo</th>
-                  <th className=" w-1/6">Dirección</th>
-                  <th className=" w-1/6">Fec. de Nacimiento</th>
-                  <th className=" w-1/12">Acciones</th>
+                  <th className=" w-1/6">Estado</th>
+                  <th className=" w-1/6">Fecha de Creación</th>
+                  <th className=" w-1/6">Codigo de Rol</th>
+
+                  <th className=" w-1/12">Cambiar Estado</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className=" text-center border-b  border-[#2c7fd2]">
-                  <td className=" w-1/12">$id </td>
-                  <td className=" w-1/6">$dni </td>
-                  <td className=" w-1/6">$nombreAlumno </td>
-                  <td className=" w-1/6">$correo </td>
-                  <td className=" w-1/6">$direccion </td>
-                  <td className=" w-1/6"> $fecha </td>
-                  <td className=" w-full h-[30px] flex justify-center items-center gap-5">
-                    <button
-                      data-modal-target="authentication-modal<?= $id ?>"
-                      data-modal-toggle="authentication-modal<?= $id ?>"
-                      className=" text-[#4A93A1] flex justify-center items-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-pencil-square"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                        />
-                      </svg>
-                    </button>
-                    <form action="adminAlumnosDelete.php" method="post">
-                      <button
-                        className=" text-red-600"
-                        value="<?= $id ?>"
-                        name="eliminar"
-                        id="eliminar"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-trash3-fill"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                        </svg>
-                      </button>
-                    </form>
-                    {/* <!-- Main modal --> */}
-                    <div
-                      id="authentication-modal<?= $id ?>"
-                      tabIndex="-1"
-                      aria-hidden="true"
-                      className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-                    >
-                      <div className="relative w-full max-w-md max-h-full">
-                        {/* <!-- Modal content --> */}
-                        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                          <button
-                            type="button"
-                            className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="authentication-modal<?= $id ?>"
-                          >
-                            <svg
-                              className="w-3 h-3"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 14 14"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                              />
-                            </svg>
-                            <span className="sr-only">Close modal</span>
-                          </button>
-                          <div className="px-6 py-6 lg:px-8">
-                            <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                              Editar Alumno
-                            </h3>
-                            <form
-                              className="space-y-6"
-                              action="adminAlumnosEdit.php"
-                              method="post"
-                            >
-                              <div className=" flex flex-col gap-3">
-                                <label
-                                  htmlFor="dni_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  DNI
-                                </label>
-                                <input
-                                  type="text"
-                                  name="dni_edit"
-                                  id="dni_edit"
-                                  value="<?= $dni ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="Ingresa el DNI"
-                                  required
-                                />
-                                <label
-                                  htmlFor="correo_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Correo Electronico
-                                </label>
-                                <input
-                                  type="email"
-                                  name="correo_edit"
-                                  id="correo_edit"
-                                  value="<?= $correo ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="Ingresa el email"
-                                  required
-                                />
-                                <label
-                                  htmlFor="nombre_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Nombre(s)
-                                </label>
-                                <input
-                                  type="text"
-                                  name="nombre_edit"
-                                  id="nombre_edit"
-                                  value="<?= $nombre ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="Ingresa el nombre(s)"
-                                  required
-                                />
-                                <label
-                                  htmlFor="apellido_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Apellido(s)
-                                </label>
-                                <input
-                                  type="text"
-                                  name="apellido_edit"
-                                  id="apellido_edit"
-                                  value="<?= $apellido ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="Ingresa el apellido(s)"
-                                  required
-                                />
-                                <label
-                                  htmlFor="direccion_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Dirección
-                                </label>
-                                <input
-                                  type="text"
-                                  name="direccion_edit"
-                                  id="direccion_edit"
-                                  value="<?= $direccion ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="Ingresa la dirección"
-                                  required
-                                />
-                                <label
-                                  htmlFor="nacimiento_edit"
-                                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >
-                                  Fecha de nacimiento
-                                </label>
-                                <input
-                                  type="date"
-                                  name="nacimiento_edit"
-                                  id="nacimiento_edit"
-                                  value="<?= $fecha ?>"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                  placeholder="mm/dd/yyyy"
-                                  required
-                                />
-                              </div>
+                {usuario.map((e, index) => (
+                  <tr
+                    className=" text-center border-b  border-[#2c7fd2]"
+                    key={index}
+                  >
+                    <td className=" w-1/12">{e.id} </td>
+                    <td className=" w-1/6">{e.usuario} </td>
+                    <td className=" w-1/6">
+                      {e.habilitado == 1 ? "Activo" : "Inactivo"}{" "}
+                    </td>
+                    <td className=" w-1/6">{e.fecha} </td>
+                    <td className=" w-1/6">{e.rol_id}</td>
 
-                              <div>
-                                <button
-                                  type="button"
-                                  className="w-[100px] text-white bg-[#6C747E] hover:text-[#6C747E] hover:bg-gray-200 px-5 py-2.5 rounded-lg text-sm ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                  data-modal-hide="authentication-modal<?= $id ?>"
-                                >
-                                  Close
-                                </button>
-                                <button
-                                  type="submit"
-                                  name="value_id"
-                                  value="<?= $id ?>"
-                                  className="w-[150px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                  Guardar cambios
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                    <td className=" w-full h-[30px] flex justify-center items-center gap-5">
+                      <form
+                        action="http://127.0.0.1:8000/api/usuarios/inactive"
+                        method="post"
+                      >
+                        <button
+                          className={
+                            e.habilitado == 0
+                              ? "text-green-600 flex justify-center items-center gap-2"
+                              : " text-red-600 flex justify-center items-center gap-2"
+                          }
+                          value={e.id}
+                          name="id_inactivar"
+                          id="id_inactivar"
+                        >
+                          <h1>{e.habilitado == 0 ? "Activar" : "Inactivar"}</h1>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            className="bi bi-clipboard2-x"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
+                            <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
+                            <path d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293Z" />
+                          </svg>
+                        </button>
+                      </form>
+                      {/* <!-- Main modal --> */}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
-          </td>
+          </div>
           {/* asd */}
         </div>
       </main>
