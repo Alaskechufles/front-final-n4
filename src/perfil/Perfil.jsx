@@ -1,17 +1,35 @@
 import { Dropdown } from "flowbite-react";
-/* import React from "react";
-import axios from "axios"; */
-export default function Perfil() {
-  /* const [post, setPost] = React.useState(null); */
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-  /*   React.useEffect(() => {
-    axios.get(baseURL)
-    .then((response) => {
-      setPost(response.data);
-    });
-  }, []); */
-  /* 
-  if (!post) return null; */
+export default function Perfil() {
+  const parametros = useParams();
+  const [usuario, setUsuario] = useState([]);
+  const [persona, setPersona] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/usuarios/" + parametros.id)
+      .then((response) => {
+        setUsuario(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/personas/" + parametros.id)
+      .then((response) => {
+        setPersona(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   return (
     <div>
       <main className="flex flex-col items-center justify-center">
@@ -24,7 +42,7 @@ export default function Perfil() {
                 <a href="/perfil">My Profile</a>
               </div>
               <div className=" m-4">
-                <a href="/login">Logout</a>
+                <a href="/">Logout</a>
               </div>
               <div className=" m-4">
                 <a href="/dashboard">Dashboard</a>
@@ -48,30 +66,25 @@ export default function Perfil() {
                 </p>
               </div>
               <div>
-                <a href="change.php">
+                <a href={"/editarperfil/" + usuario.id}>
                   <button className="border border-[#828282] w-[95px] h-[35px] rounded-xl">
                     Edit
                   </button>
                 </a>
               </div>
             </div>
-            <div className="flex flex-row items-center justify-between md:justify-start px-7 py-4 border-b border-[#E0E0E0]">
-              <p className="text-[#BDBDBD] md:w-[240px]">PHOTO</p>
-              <div>
-                <img src="" alt="foto" />
-              </div>
+
+            <div className="flex flex-row items-center justify-between px-7 py-7 border-b border-[#E0E0E0] md:justify-start">
+              <p className="text-[#BDBDBD] md:w-[240px]">USUARIO / CORREO</p>
+              <p>{usuario.usuario}</p>
             </div>
             <div className="flex flex-row items-center justify-between px-7 py-7 border-b border-[#E0E0E0] md:justify-start">
-              <p className="text-[#BDBDBD] md:w-[240px]">NAME</p>
-              <p>Diego</p>
+              <p className="text-[#BDBDBD] md:w-[240px]">NOMBRES</p>
+              <p>{persona.primer_nombre + " " + persona.segundo_nombre}</p>
             </div>
             <div className="flex flex-row items-center justify-between px-7 py-7 border-b border-[#E0E0E0] md:justify-start">
-              <p className="text-[#BDBDBD] md:w-[240px]">BIO</p>
-              <p>biografia</p>
-            </div>
-            <div className="flex flex-row items-center justify-between px-7 py-7 border-b border-[#E0E0E0] md:justify-start">
-              <p className="text-[#BDBDBD] md:w-[240px]">EMAIL</p>
-              <p>email</p>
+              <p className="text-[#BDBDBD] md:w-[240px]">APELLIDOS</p>
+              <p>{persona.primer_apellido + " " + persona.segundo_apellido}</p>
             </div>
             <div className="flex flex-row items-center justify-between px-7 py-7 border-b border-[#E0E0E0] md:justify-start">
               <p className="text-[#BDBDBD] md:w-[240px]">PASSWORD</p>
