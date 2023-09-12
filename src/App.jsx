@@ -9,8 +9,10 @@ import Dashboard from "./dashboard/Dashboard";
 import Usuarios from "./opciones/Usuarios";
 import Roles from "./opciones/Roles";
 import Parametros from "./opciones/Parametros";
-import Enlaces from "./opciones/Enlaces";
+
 import Bitacoras from "./opciones/Bitacoras";
+import EditPerfil from "./perfil/EditPerfil";
+import Paginas from "./opciones/Paginas";
 function App() {
   return (
     <>
@@ -19,13 +21,13 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/perfil/:id" element={<Perfil />} />
-          <Route path="/editarperfil/:id" element={<Perfil />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/usuarios" element={<Usuarios />} />
-          <Route path="/roles" element={<Roles />} />
+          <Route path="/editarperfil/:id" element={<EditPerfil />} />
+          <Route path="/dashboard/:id" element={<Dashboard />} />
+          <Route path="/roles/:id" element={<Roles />} />
+          <Route path="/usuarios/:id" element={<Usuarios />} />
+          <Route path="/bitacoras/:id" element={<Bitacoras />} />
+          <Route path="/paginas/:id" element={<Paginas />} />
           <Route path="/parametros" element={<Parametros />} />
-          <Route path="/enlaces" element={<Enlaces />} />
-          <Route path="/bitacoras" element={<Bitacoras />} />
         </Routes>
       </BrowserRouter>
     </>

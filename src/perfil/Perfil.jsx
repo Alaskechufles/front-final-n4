@@ -35,17 +35,20 @@ export default function Perfil() {
       <main className="flex flex-col items-center justify-center">
         <nav className="flex items-center justify-center">
           <div className="flex flex-row justify-between items-center w-screen h-16 px-7">
-            <img src="./icons/devchallenges-light.svg" alt="devchallenges" />
+            <img
+              src="../public/icons/devchallenges-light.svg"
+              alt="devchallenges"
+            />
 
             <Dropdown inline label="Admin">
               <div className=" m-4">
-                <a href="/perfil">My Profile</a>
+                <a href={"/perfil/" + parametros.id}>My Profile</a>
               </div>
               <div className=" m-4">
                 <a href="/">Logout</a>
               </div>
               <div className=" m-4">
-                <a href="/dashboard">Dashboard</a>
+                <a href={"/dashboard/" + usuario.rol_id}>Dashboard</a>
               </div>
             </Dropdown>
           </div>
